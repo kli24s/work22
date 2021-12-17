@@ -49,19 +49,19 @@ int server_connect(int from_client) {
 
   sprintf(input, "%d", random);
 
-  write(to_client, input, strlen(input));
+  write(open_call, input, strlen(input));
 
   read(from_client, input, sizeof(input));
 
   int atoi_call = atoi(input);
 
-  if (atoi_call != r+1) {
+  if (atoi_call != random+1) {
     printf("[server] handshake received bad ACK: -%s-\n", input);
     exit(0);
   }//bad response
   printf("[server] handshake received: -%s-\n", input);
 
-  return to_client;
+  return open_call;
 
 }
 
